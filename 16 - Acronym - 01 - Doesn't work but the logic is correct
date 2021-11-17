@@ -1,0 +1,18 @@
+object Acronym {
+    fun generate(phrase: String) : String {
+        var acronym: String = ""
+        word@ for (word in phrase) {
+            letter@ for (letter in word) {
+                if (letter.isLetter()){
+                    acronym += letter.toUpperCase()
+                    break@letter
+                }
+            }
+        }
+        println(acronym)
+        return acronym
+    }
+}
+fun main(){
+    Acronym.generate("Anton Kononenko")
+}
