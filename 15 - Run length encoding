@@ -1,0 +1,49 @@
+object RunLengthEncoding {
+
+    fun encode(input: String): String {
+
+        var inputString: String = input
+        var encodedString: String = String()
+
+        while (inputString.isNotEmpty()) {
+
+            val character: Char = inputString[0]
+            val count: Int = inputString.takeWhile { it == character }.length
+
+            if (count > 1) {
+                encodedString += "$count$character"
+            }
+            else
+                encodedString += character
+
+            inputString = inputString.drop(count)
+        }
+
+        return encodedString
+    }
+
+    fun decode(input: String): String {
+
+        var inputString: String = input
+        var decodedString: String = String()
+
+        while (inputString.isNotEmpty()) {
+
+            val temporaryString: String = inputString.takeWhile { it in '0'..'9' }
+
+            if (temporaryString.isNotEmpty()) {
+                inputString = inputString.drop(temporaryString.length)
+                decodedString = decodedString.padEnd(decodedString.length + temporaryString.toInt(), inputString[0])
+            } else {
+                decodedString += inputString[0]
+            }
+            inputString = inputString.drop(1)
+        }
+    return decodedString
+    }
+}
+
+fun main() {
+    println(RunLengthEncoding.encode("ddddAAAAAAAbbbbbre"))
+    println(RunLengthEncoding.decode("ddddAAAAAAAbbbbbre"))
+}
