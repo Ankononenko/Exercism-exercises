@@ -22,3 +22,4 @@ object ResistorColorDuo {
         return stringToReturn.toInt()
     }
 }
+
